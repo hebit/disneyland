@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "start:test": "ts-node src/test.ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,13 @@
   "homepage": "https://github.com/hebit/disneyland#readme",
   "devDependencies": {
     "@types/node": "^14.14.27",
+    "@types/node-fetch": "^2.5.8",
     "ts-node": "^9.1.1"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.4.1",
+    "article-parser": "^4.2.6",
+    "jsdom": "^16.4.0",
+    "node-fetch": "^2.6.1"
   }
 }
