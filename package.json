@@ -27,7 +27,9 @@
   },
   "dependencies": {
     "@mozilla/readability": "^0.4.1",
+    "algorithmia": "^0.3.10",
     "article-parser": "^4.2.6",
+    "dotenv": "^8.2.0",
     "ibm-watson": "^6.0.2",
     "jsdom": "^16.4.0",
     "node-fetch": "^2.6.1"

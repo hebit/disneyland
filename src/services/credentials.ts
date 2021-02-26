@@ -1,0 +1,5 @@
+export default {
+  TWITTER_API_KEY: process.env.TWITTER_API_KEY,
+  TWITTER_API_SECRET: process.env.TWITTER_API_SECRET,
+  TWITTER_BEARER_TOKEN: process.env.TWITTER_BEARER_TOKEN,
+};
