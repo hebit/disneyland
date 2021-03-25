@@ -35,13 +35,26 @@ const getArticleKeywords = async (client: any, article: Article) => {
     `[✓] - Keywords for '${article.title}' article:`,
     keywords.join(", ")
   );
-  return { ...article, keywords } as WithKeywords<Article>;
+  return keywords;
 };
+
+const getArticleSummary = async (client: any, article: Article) => {
+  const summarizerAlgorithm = client.algo("nlp/Summarizer/0.1.8"); 
+  const summarizerResponse = await summarizerAlgorithm.pipe(article.textContent);
+  const summary: string = summarizerResponse.get()
+
+  console.log(`[✓] - Summary for '${article.title}' article:`, summary);
+
+  return summary;
+}
 
 const start = async (articles: Article[]) => {
   const client = algorithmia(process.env.ALGORITHMIA_API_KEY);
-  const articlePromises = articles.map((article) =>
-    getArticleKeywords(client, article)
+  const articlePromises = articles.map(async (article) =>{
+    const keywords = await getArticleKeywords(client, article);
+    const summary = await getArticleSummary(client, article);
+    return { ...article, keywords, summary } as WithKeywords<Article>;
+  }
   );
   return await Promise.all(articlePromises);
 };

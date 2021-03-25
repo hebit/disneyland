@@ -13,7 +13,7 @@ const gerenateMarkdownStr = (
       `**Keywords:${
         article.keywords.length > 0 ? " " + article.keywords.join(", ") : ""
       }**  \n` +
-      `${article.textContent.trim().replace("\n", "  \n\n")}  \n` +
+      `${article.summary?.replace("\t", "").trim() ?? article.textContent.trim().replace("\n", "  \n\n")}  \n` +
       `[Fonte: ${article.siteName ?? article.url}](${article.url})`
     );
   });

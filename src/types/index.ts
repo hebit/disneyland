@@ -7,6 +7,7 @@ export type Headline = {
 
 export type Article = NonNullable<ReturnType<Readability["parse"]>> & {
   url: string;
+  summary?: string;
 };
 
 export type WithKeywords<T extends Article> = T & { keywords: string[] };
