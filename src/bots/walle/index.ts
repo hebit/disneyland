@@ -3,6 +3,8 @@ import { Readability } from "@mozilla/readability";
 import fetch from "node-fetch";
 import { Headline, Article } from "../../types";
 
+const NUM_OF_ARTICLES = 3;
+
 const getHeadlinesFromGoogleNews = async () => {
   console.log("Fetching headlines...");
   const url =
@@ -20,7 +22,7 @@ const getHeadlinesFromGoogleNews = async () => {
     }))
     .filter((headline) => headline.title);
 
-  const headlinesPromises = allHeadlines.slice(0, 10).map(async (headline) => {
+  const headlinesPromises = allHeadlines.slice(0, NUM_OF_ARTICLES).map(async (headline) => {
     const res = await fetch(headline.url);
     const text = await res.text();
     const dom = new JSDOM(text);
@@ -47,9 +49,7 @@ const fetchHeadlines = async (headlines: Headline[]) => {
   });
 
   const headlinesContent = await Promise.all(headlinesContentPromises);
-  const validArticles = headlinesContent.filter(
-    (article) => article !== null
-  ) as Article[];
+  const validArticles = headlinesContent.filter(Boolean) as Article[];
 
   console.log(
     "[✓] - Articles fetched:",
